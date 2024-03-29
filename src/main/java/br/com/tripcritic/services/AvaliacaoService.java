@@ -27,7 +27,7 @@ public class AvaliacaoService {
 
     public AvaliacaoResponse save(AvaliacaoRequest avaliacaoRequest) {
         var usuario = usuarioRepository.findById(avaliacaoRequest.usuarioId()).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-        var pontoTuristico = pontoTuristicoRepository.findById(avaliacaoRequest.restauranteId()).orElseThrow(() -> new RuntimeException("Ponto turístico não encontrado"));
+        var pontoTuristico = pontoTuristicoRepository.findById(avaliacaoRequest.pontoTuristicoId()).orElseThrow(() -> new RuntimeException("Ponto turístico não encontrado"));
         Avaliacao avaliacao = new Avaliacao(null, usuario, pontoTuristico, avaliacaoRequest.nota(), avaliacaoRequest.comentario(), LocalDateTime.now());
         avaliacaoRepository.save(avaliacao);
         return new AvaliacaoResponse(avaliacao);
